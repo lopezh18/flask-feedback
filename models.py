@@ -31,6 +31,17 @@ class User(db.Model):
         else:
             return False
 
+class Feedback(db.Model):
+    """user feedback"""
+
+    __tablename__ = 'feedback'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(100), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    username = db.Column(db.String, db.ForeignKey('users.username', ondelete="CASCADE"))
+
+
 
 def connect_db(app):
     """Connect to database"""
